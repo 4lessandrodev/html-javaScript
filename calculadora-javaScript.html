@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Calculadora</title>
+        <meta name="author" content="Alessandro L. Menezes">
+        <meta name="description" content="Meu primeiro codigo em javaScript">
+        <meta name="keywords"
+            content="sites, web, desenvolvimento, Dev, Codigo html, meu primeiro codigo, javaScript, meu portfólio, front-End">
+        <link href="https://fonts.googleapis.com/css?family=Gugi" rel="stylesheet">
+        <style>
+            h1 {
+                text-align: center;
+                margin: 1em 0em 2em;
+            }
+
+            .externo-calculadora {
+                border: 1px solid royalblue;
+                height: 60vh;
+                width: 40vw;
+                margin: auto;
+                border-radius: 20px;
+                background-color: #ece7e7;
+                box-shadow: 5px 5px 10px #9e9d9d;
+            }
+
+            #tela {
+                display: grid;
+                grid-template-columns: 100%;
+                grid-template-rows: 4vh 7vh;
+                background-color: white;
+                border: solid 1px #9e9d9d;
+                margin: 1em;
+                border-radius: 10px;
+                border-top: #9e9d9d solid 2px;
+                border-left: #9e9d9d solid 2px;
+            }
+
+            #numerosMenores {
+                display: grid;
+                grid-template-columns: 1/-1;
+                grid-template-rows: 1/2;
+                text-align: right;
+                margin: .2em 1em;
+                padding: 0;
+            }
+
+            #numero1 {
+                font-size: 1em;
+                font-family: 'Gugi', cursive;
+                color: green;
+                margin: 0;
+                padding: 0;
+            }
+
+            #numero2 {
+                font-size: 1em;
+                font-family: 'Gugi', cursive;
+                color: green;
+                margin: 0;
+                padding: 0;
+            }
+
+            #simbolo {
+                font-size: 1em;
+                font-family: 'Gugi', cursive;
+                color: green;
+                margin: 0;
+                padding: 0;
+            }
+
+            #numerosMenores,
+            p {
+                display: inline-block;
+            }
+
+            #resultado {
+                text-align: right;
+                font-size: 2em;
+                font-family: 'Gugi', cursive;
+                margin: 0 .4em;
+                color: green;
+                display: grid;
+                grid-template-rows: 2/3;
+                grid-template-columns: 1/-1;
+            }
+
+            .interno-calculadora {
+                display: -moz-grid;
+                display: -ms-grid;
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                grid-template-rows: repeat(4, 1fr);
+                grid-gap: .5em;
+                margin: 2em 1em;
+            }
+
+            #botao7 {
+                display: grid;
+                grid-column-start: 1;
+                grid-column-end: 2;
+                grid-row-start: 1;
+                grid-row-end: 2;
+                text-align: center;
+
+            }
+
+            #botao8 {
+                display: grid;
+                grid-column-start: 2;
+                grid-column-end: 3;
+                grid-row-start: 1;
+                grid-row-end: 2;
+                text-align: center;
+
+            }
+
+            #botao9 {
+                display: grid;
+                grid-column-start: 3;
+                grid-column-end: 4;
+                grid-row-start: 1;
+                grid-row-end: 2;
+                text-align: center;
+
+            }
+
+            #botaoPorcent {
+                display: grid;
+                grid-column-start: 4;
+                grid-column-end: 5;
+                grid-row-start: 1;
+                grid-row-end: 2;
+                text-align: center;
+
+            }
+
+            #botaoRaiz {
+                display: grid;
+                grid-column-start: 5;
+                grid-column-end: -1;
+                grid-row-start: 1;
+                grid-row-end: 2;
+                text-align: center;
+
+            }
+
+            #botao4 {
+                display: grid;
+                grid-column-start: 1;
+                grid-column-end: 2;
+                grid-row-start: 2;
+                grid-row-end: 3;
+                text-align: center;
+
+            }
+
+            #botao5 {
+                display: grid;
+                grid-column-start: 2;
+                grid-column-end: 3;
+                grid-row-start: 2;
+                grid-row-end: 3;
+                text-align: center;
+
+            }
+
+            #botao6 {
+                display: grid;
+                grid-column-start: 3;
+                grid-column-end: 4;
+                grid-row-start: 2;
+                grid-row-end: 3;
+                text-align: center;
+
+            }
+
+            #botaoX {
+                display: grid;
+                grid-column-start: 4;
+                grid-column-end: 5;
+                grid-row-start: 2;
+                grid-row-end: 3;
+                text-align: center;
+
+            }
+
+            #botaoDivid {
+                display: grid;
+                grid-column-start: 5;
+                grid-column-end: -1;
+                grid-row-start: 2;
+                grid-row-end: 3;
+                text-align: center;
+
+            }
+
+            #botao1 {
+                display: grid;
+                grid-column-start: 1;
+                grid-column-end: 2;
+                grid-row-start: 3;
+                grid-row-end: 4;
+                text-align: center;
+
+            }
+
+            #botao2 {
+                display: grid;
+                grid-column-start: 2;
+                grid-column-end: 3;
+                grid-row-start: 3;
+                grid-row-end: 4;
+                text-align: center;
+
+            }
+
+            #botao3 {
+                display: grid;
+                grid-column-start: 3;
+                grid-column-end: 4;
+                grid-row-start: 3;
+                grid-row-end: 4;
+                text-align: center;
+
+            }
+
+            #botaoMais {
+                display: grid;
+                grid-column-start: 4;
+                grid-column-end: 5;
+                grid-row-start: 3;
+                grid-row-end: 5;
+                text-align: center;
+
+            }
+
+            #botaoMenos {
+                display: grid;
+                grid-column-start: 5;
+                grid-column-end: -1;
+                grid-row-start: 3;
+                grid-row-end: 4;
+                text-align: center;
+
+            }
+
+            #botao0 {
+                display: grid;
+                grid-column-start: 1;
+                grid-column-end: 2;
+                grid-row-start: 4;
+                grid-row-end: 5;
+                text-align: center;
+
+            }
+
+            #botaoPonto {
+                display: grid;
+                grid-column-start: 2;
+                grid-column-end: 3;
+                grid-row-start: 4;
+                grid-row-end: 5;
+                text-align: center;
+
+            }
+
+            #botaoZerar {
+                display: grid;
+                grid-column-start: 3;
+                grid-column-end: 4;
+                grid-row-start: 4;
+                grid-row-end: 5;
+                text-align: center;
+
+            }
+
+            #botaoIgual {
+                display: grid;
+                grid-column-start: 5;
+                grid-column-end: -1;
+                grid-row-start: 4;
+                grid-row-end: 5;
+                text-align: center;
+
+            }
+
+            .botao {
+                height: 4em;
+                width: 100%;
+                font-size: .9em;
+            }
+
+            .botaoMais {
+                height: 8.5em;
+                width: 100%;
+                font-size: .9em;
+            }
+
+            blockquote {
+                text-align: center;
+                margin: 3em;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <main>
+            <h1>Calculadora</h1>
+            <div class="externo-calculadora">
+                <div id="tela">
+                    <div id="numerosMenores">
+                        <p id="numero1"></p>
+                        <p id="simbolo"></p>
+                        <p id="numero2"></p>
+                    </div>
+                    <p id="resultado">0</p>
+                </div>
+                <div class="interno-calculadora">
+                    <div id="botao7"><button class="botao" onclick="botao('7')">7</button></div>
+                    <div id="botao8"><button class="botao" onclick="botao('8')">8</button></div>
+                    <div id="botao9"><button class="botao" onclick="botao('9')">9</button></div>
+                    <div id="botaoPorcent"><button class="botao" onclick="calcular('Porcent')">&#37;</button></div>
+                    <div id="botaoRaiz"><button class="botao" onclick="calcular('Raiz')">&radic;</button></div>
+                    <div id="botao4"><button class="botao" onclick="botao('4')">4</button></div>
+                    <div id="botao5"><button class="botao" onclick="botao('5')">5</button></div>
+                    <div id="botao6"><button class="botao" onclick="botao('6')">6</button></div>
+                    <div id="botaoX"><button class="botao" onclick="calcular('x')">x</button></div>
+                    <div id="botaoDivid"><button class="botao" onclick="calcular('/')">&frasl;</button></div>
+                    <div id="botao1"><button class="botao" onclick="botao('1')">1</button></div>
+                    <div id="botao2"><button class="botao" onclick="botao('2')">2</button></div>
+                    <div id="botao3"><button class="botao" onclick="botao('3')">3</button></div>
+                    <div id="botaoMais"><button class="botaoMais" onclick="calcular('+')">&#43;</button></div>
+                    <div id="botaoMenos"><button class="botao" onclick="calcular('-')">&#45;</button></div>
+                    <div id="botao0"><button class="botao" onclick="botao('0')">0</button></div>
+                    <div id="botaoPonto"><button class="botao">&#46;</button></div>
+                    <div id="botaoZerar"><button class="botao" onclick="apagar()">&#140; </button></div>
+                    <div id="botaoIgual"><button class="botao" onclick="resultado()">&#61;</button></div>
+                </div>
+            </div>
+            <blockquote>
+                <cite>Desenvolvido por Alessandro L. Menezes</cite>
+            </blockquote>
+        </main>
+        <script>
+            function botao(valor) {
+                var numeroNaTela = parseFloat(document.querySelector('#resultado').textContent);
+                imprimir(valor, numeroNaTela);
+            }
+
+            function imprimir(mensagem, numeroNaTela) {
+                if (numeroNaTela != null && numeroNaTela != 0) {
+                    var output = document.querySelector('#resultado');
+                    output.innerHTML = numeroNaTela + mensagem;
+                } else {
+                    var output = document.querySelector('#resultado');
+                    output.innerHTML = mensagem;
+                }
+            }
+
+            function apagar() {
+                var mensagem = '';
+                var output1 = document.querySelector('#numero1');
+                var output2 = document.querySelector('#numero2');
+                var output3 = document.querySelector('#simbolo');
+                output1.innerHTML = mensagem;
+                output2.innerHTML = mensagem;
+                output3.innerHTML = mensagem;
+                var output4 = document.querySelector('#resultado');
+                output4.innerHTML = '0';
+            }
+
+            function calcular(simbolo) {
+                var numeroNaTela = parseFloat(document.querySelector('#resultado').textContent);
+                var output1 = document.querySelector('#numero1');
+                var output2 = document.querySelector('#simbolo');
+                var mensagem = '0';
+                output1.innerHTML = numeroNaTela;
+                var numeroNaTela2 = document.querySelector('#resultado');
+                numeroNaTela2.innerHTML = mensagem;
+                output2.innerHTML = simbolo;
+            }
+
+            function resultado() {
+                var numero1 = parseFloat(document.querySelector('#numero1').textContent);
+                var simbolo = document.querySelector('#simbolo').innerHTML;
+                var numero2 = parseFloat(document.querySelector('#resultado').textContent);
+                switch (simbolo) {
+                    case 'x':
+                        var resultadoFinal = numero1 * numero2;
+                        imprimirResultadoFInal(numero1, numero2, simbolo, resultadoFinal);
+                        break;
+                    case 'Porcent':
+                        var resultadoFinal = (numero1 * numero2) / 100;
+                        imprimirResultadoFInal(numero1, numero2, simbolo, resultadoFinal);
+                        break;
+                    case 'Raiz':
+                        var resultadoFinal = Math.sqrt(numero1)
+                        imprimirResultadoFInal(numero1, numero2, simbolo, resultadoFinal);
+                        break;
+                    case '/':
+                        var resultadoFinal = numero1 / numero2;
+                        imprimirResultadoFInal(numero1, numero2, simbolo, resultadoFinal);
+                        break;
+                    case '-':
+                        var resultadoFinal = numero1 - numero2;
+                        imprimirResultadoFInal(numero1, numero2, simbolo, resultadoFinal);
+                        break;
+                    case '+':
+                        var resultadoFinal = numero1 + numero2;
+                        imprimirResultadoFInal(numero1, numero2, simbolo, resultadoFinal);
+                        break;
+                }
+            }
+
+            function imprimirResultadoFInal(numero1, numero2, simbolo, resultado) {
+                var output1 = document.querySelector('#numero1');
+                var output2 = document.querySelector('#numero2');
+                var output3 = document.querySelector('#simbolo');
+                var output4 = document.querySelector('#resultado');
+                output1.innerHTML = numero1;
+                output2.innerHTML = numero2;
+                output3.innerHTML = simbolo;
+                output4.innerHTML = resultado;
+            }
+        </script>
+    </body>
+
+</html>
